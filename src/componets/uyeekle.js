@@ -1,16 +1,13 @@
 import React,{Component} from 'react';
-import './deneme.css';
-import ReactShadowScroll from 'react-shadow-scroll';
 import {connect} from 'react-redux';
 import {Veriler} from '../actions/kayıtlar';
 
-class KayıtOl extends Component {
-
+class UyeEkle extends Component {
   constructor(props){
   
     super(props);
      this.state ={
-       giris_id:'0',
+       giris_id:'1',
        ogrenci_k_a:'', //tc kimlik no
        ogrenci_ad:'',
        ogrenci_okul_no:'',
@@ -21,6 +18,7 @@ class KayıtOl extends Component {
        ogrenci_sirket:'',
        ogrenci_pozisyon:'',
        ogrenci_sektor:'',
+       ogrenci_mezuntarihi:'',
        ogrenci_baslangıc:'',
        ogrenci_bitis:'',
        ogrenci_ulke:'',
@@ -47,20 +45,27 @@ class KayıtOl extends Component {
     
   }
 
-
-  render(){
-
-
- 
+   render(){
     return(
-      <ReactShadowScroll>
-     
-                        
-     <div className='kayit-tasarim'>
-      <h1 style={{color:'white'}}>MEZUN  KAYIT FORMU</h1>
-     
-              
-     
+      <div>
+        <div className="ui inverted segment">
+          <div className="ui inverted secondary menu">
+            <a  href="Ogrenciler" className="item"> Mezun Öğrenciler  </a>
+            <a href="Uye-Ekle" className="active item"> Mezun Öğrenci Ekle  </a>
+            <a href="UyeSil"  className="item"> Mezun Öğrenci Sil  </a>
+            <a href="Basvurular"  className="item"> Başvurular  </a>
+            <div className="ui icon input">
+                <input type="text " placeholder="Öğrenci Ara..." style={{marginLeft:'480px'}}/>
+                <i className="search link icon"></i>
+              </div>
+            <a href="/" className="ui item" style={{marginLeft:'20px'}}>Çıkış Yap </a>
+          </div>
+        </div>
+    
+    
+    
+        <div className='kayit-tasarim'>
+
      
      <h3 className='kayıt-baslık'> Kimlik Bilgileri</h3>
      <div className="ui left icon input" style={{fontSize:'12px',width:'400px',flexDirection:'column'}}>
@@ -184,9 +189,44 @@ class KayıtOl extends Component {
         
      </div>
      
+     <h3 > Mezun Olduğu Yıl</h3>
+     <div  >
+        <select multiple="" style={{fontSize:'18px',width:'200px'}} 
+                name='ogrenci_mezuntarihi' 
+                value={this.state.ogrenci_mezuntarihi}
+                onChange={this.onChange}>
+        <option value=" --Sec-- "> --Sec-- </option>
+        <option value="2024">2024</option>
+        <option value="2023">2023</option>
+        <option value="2022">2022</option>
+        <option value="2021">2021</option>
+        <option value="2020">2020</option>
+        <option value="2019">2019</option>
+        <option value="2018">2018</option>
+        <option value="2017">2017</option>
+        <option value="2016">2016</option>
+        <option value="2015">2015</option>
+        <option value="2014">2014</option>
+        <option value="2013">2013</option>
+        <option value="2012">2012</option>
+        <option value="2011">2011</option>
+        <option value="2010">2010</option>
+        <option value="2009">2009</option>
+        <option value="2008">2008</option>
+        <option value="2007">2007</option>
+        <option value="2006">2006</option>
+        <option value="2005">2005</option>
+        <option value="2004">2004</option>
+        <option value="2003">2003</option>
+        <option value="2002">2002</option>
+        <option value="2001">2001</option>
+        <option value="2000">2000</option>
+    
+       </select>
+                          
+      </div>
      
-     
-     <h3 > Başlangıç Yılı</h3>
+     <h3 > İşe Başlangıç Yılı</h3>
      <div  >
         <select multiple="" style={{fontSize:'18px',width:'200px'}} 
                 name='ogrenci_baslangıc' 
@@ -222,7 +262,7 @@ class KayıtOl extends Component {
        </select>
                           
       </div>
-     <h3 > Bitiş Yılı</h3>
+     <h3 > İşten Ayrılma Yılı</h3>
      <div  >
         <select multiple="" style={{fontSize:'18px',width:'200px'}} 
                 name='ogrenci_bitis' 
@@ -556,20 +596,19 @@ class KayıtOl extends Component {
            // this.props.Veriler(ogrenci_email,ogrenci_s);
            this.props.Veriler(this.state);
         } } >  Üye ol  </button>
-     <h5 className='kayıt-baslık'> *Kayıt formunuz onaylandıktan sonra sisteme giriş yapabilirsiniz</h5>
+   
      <div style={{fontSize:'12px',width:'400px',flexDirection:'column',marginTop:'100px'}} />
      
      </div>
      
      </div>
-     
-             
-                   
-     </ReactShadowScroll>
-            
-     
-         )
+    
+    
+    
+      </div>
+        
+        )
+
+   }
   }
- 
-}
-export default  connect(null,{Veriler}) (KayıtOl);
+  export default connect(null,{Veriler}) (UyeEkle);
