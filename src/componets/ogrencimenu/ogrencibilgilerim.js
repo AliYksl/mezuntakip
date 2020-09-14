@@ -10,13 +10,13 @@ class OgrenciBilgilerim extends Component {
 
   componentDidMount(){
     
-    if(this.props.location.state3 ){
-   
+  //  if(this.props.Glnveri[0]){
+      //console.log("girdi")
       
-    this.props.OgrenciGiris(this.props.location.state3.ogrenci_k_a,this.props.location.state3.ogrenci_s);
+   // this.props.OgrenciGiris("test132@hotmail.com","123");
        
-    }
-   // console.log(this.props.location.state3);
+   // }
+    console.log(this.props);
   
    
   }

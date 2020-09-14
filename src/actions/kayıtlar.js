@@ -128,7 +128,7 @@ export const basvuruonayla =(veriler)=>{
 }
 
 export const OgrenciGiris =(k_adı,sifre)=>{
-    console.log(k_adı)
+   
   
     return dispatch =>{
         firebase.database().ref('/kullanıcılar').orderByChild('ogrenci_email').equalTo(k_adı)
