@@ -8,8 +8,11 @@ import Ogretmenmenu from './componets/ogretmenmenu';
 import UyeEkle from './componets/uyeekle';
 import UyeSil from './componets/uyesil';
 import Basvuru from './componets/basvurular';
+import OgrenciBilgilerim from './componets/ogrencimenu/ogrencibilgilerim';
 import history from './history'
 import './App.css';
+import {isLoggedIn} from './actions/index';
+import {connect} from 'react-redux';
 import firebase from 'firebase/app'
 import 'firebase/auth'
 
@@ -26,6 +29,7 @@ componentWillMount(){
     appId: "1:212032692874:web:ab7176cf6a169bdc5d0373",
     measurementId: "G-89R58FKCBZ"
   });
+  this.props.isLoggedIn();
 }
 
  render(){
@@ -37,6 +41,7 @@ componentWillMount(){
             <Route path='/' exact component={Secim}/>
             <Route path='/ogretmengiris' exact component={Ogretmengiris}/>
             <Route path='/ogrencigiris' exact component={Ogrencigiris}/>
+            <Route path='/ogrencigiris/Bilgilerim' exact component={OgrenciBilgilerim}/>
             <Route path='/ogrencigiris/kayitol' exact component={KayıtOl}/>
             <Route path='/ogretmengiris/Ogrenciler' exact component={Ogretmenmenu}/>
             <Route path='/ogretmengiris/Uye-Ekle' exact component={UyeEkle}/>
@@ -54,4 +59,4 @@ componentWillMount(){
  }
 }
 
-export default App;
+export default connect (null,{isLoggedIn}) (App);

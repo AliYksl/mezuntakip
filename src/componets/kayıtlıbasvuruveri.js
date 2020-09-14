@@ -1,9 +1,11 @@
 import React from 'react';
 import logo from './profil.jpg';
 
+
 const KayıtlıBasvuruVeri =({veriler}) =>{
-    return(
-        <div>
+  
+    return (
+      <div>
 
         <div className="ui cards" style={{marginLeft:'500px'}}>
           <div className="card">
@@ -56,7 +58,7 @@ const KayıtlıBasvuruVeri =({veriler}) =>{
          
         </div>
       </div>
-  
     )
 }
+
 export default KayıtlıBasvuruVeri;

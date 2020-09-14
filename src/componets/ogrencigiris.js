@@ -1,7 +1,14 @@
 import React,{Component} from 'react';
 import { Link } from 'react-router-dom'
+import {OgrenciGiris} from '../actions/kayıtlar';
+import {connect} from 'react-redux';
+
+
+
+
 
 class Ogrencigiris extends Component {
+ 
   
  constructor(props){
    super(props);
@@ -21,8 +28,8 @@ class Ogrencigiris extends Component {
   }
 
 
-   render(){
-     console.log(this.state);
+   render(){  
+    
 
     return(
 
@@ -32,9 +39,9 @@ class Ogrencigiris extends Component {
         <div className="column">
           <div className="ui form">
             <div className="field">
-              <label >TC. Kimlik No</label>
+              <label >E-mail</label>
               <div className="ui left icon input">
-                <input type="text" placeholder="TC. Kimlik No" 
+                <input type="text" placeholder="E-mail" 
                   name='ogrenci_k_a' 
                   value={this.state.ogrenci_k_a}
                   onChange={this.onChange}></input>
@@ -50,7 +57,13 @@ class Ogrencigiris extends Component {
                 <i className="lock icon"></i>
               </div>
             </div>
-            <div className="ui blue submit button">Giriş Yap</div>
+            <div className="ui blue submit button"
+                onClick={()=>{
+          
+                  this.props.OgrenciGiris(this.state.ogrenci_k_a,this.state.ogrenci_s)
+            
+                }}
+               >Giriş Yap</div>
           </div>
         </div>
         <div className="middle aligned column">
@@ -62,10 +75,19 @@ class Ogrencigiris extends Component {
       </div>
       <div className="ui vertical divider">Veya </div>
     </div>
-    
+     
       </div>
      
         )
    }
 }
-export default Ogrencigiris;
+const mapStateToProps =(state2) =>{
+ 
+  
+  return{
+
+    Glnveri: state2.Glnveri
+  }
+
+}
+export default connect(mapStateToProps,{OgrenciGiris}) (Ogrencigiris);

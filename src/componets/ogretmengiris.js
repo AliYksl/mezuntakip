@@ -23,7 +23,6 @@ class Ogretmengiris extends Component{
    }
  
   render(){
-    console.log(this.state);
     return(
       <div className="ogretmen-girisi">
           <div className="ui form">
@@ -43,7 +42,7 @@ class Ogretmengiris extends Component{
                 <input type="password" placeholder="Şifreniz"  name='ogretmen_s' 
                   value={this.state.ogretmen_s}
                   onChange={this.onChange}></input>
-                <i class="lock icon"></i>
+                <i className="lock icon"></i>
               </div>
             </div>
             <div className="ui blue submit button" 

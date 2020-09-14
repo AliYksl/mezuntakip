@@ -6,7 +6,8 @@ import {connect} from 'react-redux';
 class KayıtlıVeriSil extends Component{
   //console.log(veriler.uid)
     render(){
-      return(
+      const {isLoggedIn} =this.props.auth;
+      return isLoggedIn === true ?(
         <div>
 
         <div className="ui cards" style={{marginLeft:'500px'}}>
@@ -67,9 +68,19 @@ class KayıtlıVeriSil extends Component{
         </div>
       </div>
   
+      ):(
+        <div></div>
+       
     )
     }
 }
+const mapStateToProps =(state) =>{
+ 
+  return{
+    auth: state.auth
+    
+  }
 
-export default  connect(null,{Mezunogrecisil}) (KayıtlıVeriSil);
+}
+export default  connect(mapStateToProps,{Mezunogrecisil}) (KayıtlıVeriSil);
 

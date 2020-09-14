@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {kayıtlıvergoster} from '../actions/kayıtlar';
 import KayıtlıVeriSil from './kayitliverisil';
+import {logout} from '../actions/index'
 
 class UyeSil extends Component {
   componentDidMount(){
@@ -20,7 +21,10 @@ class UyeSil extends Component {
                 <input type="text " placeholder="Öğrenci Ara..." style={{marginLeft:'480px'}}/>
                 <i className="search link icon"></i>
               </div>
-            <a href="/" className="ui item" style={{marginLeft:'20px'}}>Çıkış Yap </a>
+            <a href="/" className="ui item" style={{marginLeft:'20px'}}
+              onClick={()=>{
+              this.props.logout();
+            }} >Çıkış Yap </a>
           </div>
         </div>
 
@@ -44,4 +48,4 @@ class UyeSil extends Component {
   
   }
   
-  export default connect(mapStateToProps,{kayıtlıvergoster}) (UyeSil);
+  export default connect(mapStateToProps,{kayıtlıvergoster,logout}) (UyeSil);

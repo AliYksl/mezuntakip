@@ -1,11 +1,13 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {Veriler} from '../actions/kayıtlar';
-import {logout} from '../actions/index'
+import {OgrenciGiris,Bilgiguncelle} from '../../actions/kayıtlar';
+import logo from '../profil.jpg';
 
-class UyeEkle extends Component {
+
+
+class BilgiGuncelle extends Component {
+   
   constructor(props){
-  
     super(props);
      this.state ={
        giris_id:'1',
@@ -19,14 +21,13 @@ class UyeEkle extends Component {
        ogrenci_sirket:'',
        ogrenci_pozisyon:'',
        ogrenci_sektor:'',
-       ogrenci_mezuntarihi:'',
        ogrenci_baslangıc:'',
        ogrenci_bitis:'',
        ogrenci_ulke:'',
        ogrenci_sehir:'',
        ogrenci_s:'',
-       ogrenci_s_tekrar:''
-   
+       ogrenci_s_tekrar:'',
+       
      }
   
      this.onChange = this.onChange.bind(this);
@@ -38,45 +39,82 @@ class UyeEkle extends Component {
      })
      
    } 
-   Change(event){
-    this.setState({
-      [event.target.name]: event.target.value
-      
-    })
+ 
+ 
+  render(){
     
-  }
 
-   render(){
+   // console.log(this.state)
+  
     return(
       <div>
-        <div className="ui inverted segment">
-          <div className="ui inverted secondary menu">
-            <a  href="Ogrenciler" className="item"> Mezun Öğrenciler  </a>
-            <a href="Uye-Ekle" className="active item"> Mezun Öğrenci Ekle  </a>
-            <a href="UyeSil"  className="item"> Mezun Öğrenci Sil  </a>
-            <a href="Basvurular"  className="item"> Başvurular  </a>
-            <div className="ui icon input">
-                <input type="text " placeholder="Öğrenci Ara..." style={{marginLeft:'480px'}}/>
-                <i className="search link icon"></i>
-              </div>
-            <a href="/" className="ui item" style={{marginLeft:'20px'}}
-              onClick={()=>{
-              this.props.logout();
-            }}>Çıkış Yap </a>
-          </div>
-        </div>
-    
-    
-    
-        <div className='kayit-tasarim'>
+            <div>
 
-     
+<div className="ui cards" style={{marginLeft:'500px'}}>
+        <div className="card">
+          <div className="content">
+          
+            <img src={logo} alt=" " className="right floated mini ui image" />
+            <div className="header">
+              {this.props.veriler.ogrenci_ad}
+            </div>
+            <div className="meta">
+                    {this.props.veriler.ogrenci_bölüm}
+            </div>
+            <div className="description" >
+              Ülke: {this.props.veriler.ogrenci_ulke}
+            </div>
+            <div className="description">
+              Yaşadığı Şehir: {this.props.veriler.ogrenci_sehir}
+            </div>
+            <div className="description">
+              T.C Kimlik No: {this.props.veriler.ogrenci_k_a}
+            </div>
+            <div className="description">
+              Okul Numarası: {this.props.veriler.ogrenci_okul_no}
+            </div>
+            <div className="description">
+              Akedemik Birim: {this.props.veriler.ogrenci_akedemik_birim}
+            </div>
+            <div className="description">
+              İşe Başlangıç Yılı: {this.props.veriler.ogrenci_baslangıc}
+            </div>
+            <div className="description">
+              İşten Ayrılma Yılı: {this.props.veriler.ogrenci_bitis}
+            </div>
+            <div className="description">
+              Cep No: {this.props.veriler.ogrenci_cepno}
+            </div>
+            <div className="description">
+            E-mail: {this.props.veriler.ogrenci_email}
+            </div>
+            <div className="description">
+              Şirket Adı: {this.props.veriler.ogrenci_sirket}
+            </div>
+            <div className="description">
+              Pozisyon: {this.props.veriler.ogrenci_pozisyon}
+            </div>
+          </div>
+        
+        </div>
+      
+      </div>
+      </div>
+    
+       
+
+
+
+
+
+    <div className='kayit-tasarim'>
+  
      <h3 className='kayıt-baslık'> Kimlik Bilgileri</h3>
      <div className="ui left icon input" style={{fontSize:'12px',width:'400px',flexDirection:'column'}}>
-       <input type="text" placeholder="TC. Kimlik No"
+       <input type="text" placeholder='Adınız' 
                   name='ogrenci_k_a' 
                   value={this.state.ogrenci_k_a}
-                  onChange={this.onChange}></input>
+                 onChange={this.onChange}></input>
          <div className="ui left icon input" style={{marginTop:'15px'}}>
              <input type="text" placeholder="Ad-Soyad"
                 name='ogrenci_ad' 
@@ -149,12 +187,6 @@ class UyeEkle extends Component {
      
      <h3 className='kayıt-baslık'>İletişim Bilgileri</h3>
      <div className="ui left icon input" style={{fontSize:'12px',width:'400px',flexDirection:'column'}}>
-       <div className="ui left icon input" style={{fontSize:'12px',width:'400px'}}>
-          <input type="text" placeholder="E-Mail" 
-                  name='ogrenci_email' 
-                  value={this.state.ogrenci_email}
-                  onChange={this.onChange}></input><i className="envelope icon"></i>
-       </div> 
        <div className="ui left icon input" style={{fontSize:'12px',width:'400px',marginTop:'12px'}}>
          <input type="text" placeholder="Cep No"
           name='ogrenci_cepno' 
@@ -193,44 +225,9 @@ class UyeEkle extends Component {
         
      </div>
      
-     <h3 > Mezun Olduğu Yıl</h3>
-     <div  >
-        <select multiple="" style={{fontSize:'18px',width:'200px'}} 
-                name='ogrenci_mezuntarihi' 
-                value={this.state.ogrenci_mezuntarihi}
-                onChange={this.onChange}>
-        <option value=" --Sec-- "> --Sec-- </option>
-        <option value="2024">2024</option>
-        <option value="2023">2023</option>
-        <option value="2022">2022</option>
-        <option value="2021">2021</option>
-        <option value="2020">2020</option>
-        <option value="2019">2019</option>
-        <option value="2018">2018</option>
-        <option value="2017">2017</option>
-        <option value="2016">2016</option>
-        <option value="2015">2015</option>
-        <option value="2014">2014</option>
-        <option value="2013">2013</option>
-        <option value="2012">2012</option>
-        <option value="2011">2011</option>
-        <option value="2010">2010</option>
-        <option value="2009">2009</option>
-        <option value="2008">2008</option>
-        <option value="2007">2007</option>
-        <option value="2006">2006</option>
-        <option value="2005">2005</option>
-        <option value="2004">2004</option>
-        <option value="2003">2003</option>
-        <option value="2002">2002</option>
-        <option value="2001">2001</option>
-        <option value="2000">2000</option>
-    
-       </select>
-                          
-      </div>
      
-     <h3 > İşe Başlangıç Yılı</h3>
+     
+     <h3 > Başlangıç Yılı</h3>
      <div  >
         <select multiple="" style={{fontSize:'18px',width:'200px'}} 
                 name='ogrenci_baslangıc' 
@@ -266,7 +263,7 @@ class UyeEkle extends Component {
        </select>
                           
       </div>
-     <h3 > İşten Ayrılma Yılı</h3>
+     <h3 > Bitiş Yılı</h3>
      <div  >
         <select multiple="" style={{fontSize:'18px',width:'200px'}} 
                 name='ogrenci_bitis' 
@@ -569,8 +566,6 @@ class UyeEkle extends Component {
              <i className="angle double right icon"></i>
      </div>
      
-     
-     
      <h3 className='kayıt-baslık'> Giriş Bilgileri</h3>
      <div className="ui left icon input" style={{fontSize:'12px',width:'400px',flexDirection:'column'}}>
       <div className="ui left icon input" style={{fontSize:'12px',width:'400px',flexDirection:'column'}}>
@@ -583,36 +578,44 @@ class UyeEkle extends Component {
        <div className="ui left icon input" style={{fontSize:'12px',width:'400px',flexDirection:'column',marginTop:'12px'}}>
        <input type="password" placeholder="Şifre Tekrar"
             name='ogrenci_s_tekrar' 
-            value={this.state.ogrenci_s_tekrarr}
+            value={this.state.ogrenci_s_tekrar}
             onChange={this.onChange}></input>
           <i className="lock icon"></i>
        
        </div>
      </div>
+
      <div>
      
-     
-     
-     
+
      <button className="ui primary button"
         onClick={()=>{
            // const {ogrenci_email,ogrenci_s}=this.state;
            // this.props.Veriler(ogrenci_email,ogrenci_s);
-           this.props.Veriler(this.state);
-        } } >  Üye ol  </button>
-   
+           this.props.Bilgiguncelle(this.state,this.props.Glnveri[0].uid);
+        } } >  Kaydet  </button>
+     
      <div style={{fontSize:'12px',width:'400px',flexDirection:'column',marginTop:'100px'}} />
      
      </div>
      
      </div>
-    
-    
-    
+     
+             
+
       </div>
         
         )
-
-   }
   }
-  export default connect(null,{Veriler,logout}) (UyeEkle);
+}
+const mapStateToProps =(state2) =>{
+ 
+    
+  return{
+    Glnveri: state2.Glnveri
+    
+  }
+
+}
+
+export default connect(mapStateToProps,{OgrenciGiris,Bilgiguncelle}) (BilgiGuncelle);
